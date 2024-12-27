@@ -1,4 +1,5 @@
 import { createStylesheet } from "userscript-utils";
+import { FilterState } from "../FilterState/FilterState";
 
 const BOLD_CLASS = "is_bolded";
 const INSERT_CONTAINER_AFTER_CLASS = "page_charts_settings_summary";
@@ -17,13 +18,7 @@ const SHOW_PLACEHOLDER_CHECKBOX_ID = "rrowe404_show_placeholder";
 const PLACEHOLDER_KEY = 'rrowe404_placeholder_key';
 const SHOW_PLACEHOLDER_CLASS = "rrowe404_placeholders";
 
-enum FilterState {
-  Off = "off",
-  BoldOnly = "boldOnly",
-  NonBoldOnly = "nonBoldOnly",
-}
-
-class RateYourMusicBoldFilter {
+class RateYourMusicBoldFilterChart {
   private filterState: FilterState = FilterState.Off;
   private showPlaceholders: boolean = false;
 
@@ -321,6 +316,6 @@ class RateYourMusicBoldFilter {
   }
 }
 
-const instance = new RateYourMusicBoldFilter();
+const instance = new RateYourMusicBoldFilterChart();
 
 window.addEventListener("load", async () => await instance.main());
