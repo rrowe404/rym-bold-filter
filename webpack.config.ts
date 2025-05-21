@@ -1,3 +1,3 @@
 import { UserscriptConfig } from 'webpack-userscript-config';
 
-module.exports = new UserscriptConfig(__dirname).getConfiguration();
+export default new UserscriptConfig(__dirname).getConfiguration();
