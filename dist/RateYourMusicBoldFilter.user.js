@@ -88,10 +88,9 @@ class RateYourMusicBoldFilter {
         wrapper.setAttribute('id', WRAPPER_ID);
         wrapper.append(checkbox, label);
         const insertAfter = document.querySelector('.' + INSERT_CHECKBOX_AFTER_CLASS);
-        insertAfter === null || insertAfter === void 0 ? void 0 : insertAfter.append(wrapper);
+        insertAfter?.append(wrapper);
         checkbox.addEventListener('change', (event) => {
-            var _a;
-            const isChecked = (_a = event === null || event === void 0 ? void 0 : event.target) === null || _a === void 0 ? void 0 : _a.checked;
+            const isChecked = event?.target?.checked;
             this.refilter(isChecked);
         });
     }
@@ -154,7 +153,7 @@ class RateYourMusicBoldFilter {
             };
             divsToShowOrHide.forEach((div) => {
                 if (div) {
-                    hide(div) ? div === null || div === void 0 ? void 0 : div.classList.add(DISPLAY_NONE_CLASS) : div === null || div === void 0 ? void 0 : div.classList.remove(DISPLAY_NONE_CLASS);
+                    hide(div) ? div?.classList.add(DISPLAY_NONE_CLASS) : div?.classList.remove(DISPLAY_NONE_CLASS);
                 }
             });
             if (!isEmpty) {
