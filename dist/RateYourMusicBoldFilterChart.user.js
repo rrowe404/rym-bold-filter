@@ -27,15 +27,6 @@ var FilterState;
 })(FilterState || (FilterState = {}));
 
 ;// ./src/RateYourMusicBoldFilterChart/RateYourMusicBoldFilterChart.user.ts
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
 
 const BOLD_CLASS = "is_bolded";
@@ -54,10 +45,8 @@ const SHOW_PLACEHOLDER_CHECKBOX_ID = "rrowe404_show_placeholder";
 const PLACEHOLDER_KEY = 'rrowe404_placeholder_key';
 const SHOW_PLACEHOLDER_CLASS = "rrowe404_placeholders";
 class RateYourMusicBoldFilterChart {
-    constructor() {
-        this.filterState = FilterState.Off;
-        this.showPlaceholders = false;
-    }
+    filterState = FilterState.Off;
+    showPlaceholders = false;
     // puts all of the styles on the page that we need for the rest of the script
     addStyles() {
         createStylesheet(`
@@ -110,7 +99,7 @@ class RateYourMusicBoldFilterChart {
         wrapper.appendChild(this.createShowPlaceholderCheckbox());
         if (insertAfter) {
             const { parentNode, nextSibling } = insertAfter;
-            parentNode === null || parentNode === void 0 ? void 0 : parentNode.insertBefore(wrapper, nextSibling);
+            parentNode?.insertBefore(wrapper, nextSibling);
         }
     }
     createFakeChartItem() {
@@ -122,7 +111,7 @@ class RateYourMusicBoldFilterChart {
         wrapper.classList.add(ITEM_CLASS, FAKE_CHART_ITEM_CLASS, FILTERED_CLASS);
         wrapper.textContent = "Bold Filter: Nothing to see here!";
         const parent = document.getElementById(SECTION_ID);
-        parent === null || parent === void 0 ? void 0 : parent.appendChild(wrapper);
+        parent?.appendChild(wrapper);
     }
     createPaginationObserver() {
         const node = document.getElementById("page_charts_section_charts");
@@ -225,9 +214,8 @@ class RateYourMusicBoldFilterChart {
         this.getReleases().forEach((release) => release.classList.remove(FILTERED_CLASS));
     }
     readFilterState() {
-        var _a;
         const checked = document.querySelector(`input[name=${RADIO_GROUP_NAME}]:checked`);
-        return (_a = checked === null || checked === void 0 ? void 0 : checked.value) !== null && _a !== void 0 ? _a : FilterState.Off;
+        return checked?.value ?? FilterState.Off;
     }
     refilter(filterState) {
         this.unfilter();
@@ -249,19 +237,17 @@ class RateYourMusicBoldFilterChart {
         const releaseSection = document.getElementById(SECTION_ID);
         this.applyClass(releaseSection, this.showPlaceholders && !showFakeChartItem, SHOW_PLACEHOLDER_CLASS);
     }
-    main() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.addStyles();
-            this.filterState = yield GM.getValue(FILTER_STATE_KEY, FilterState.Off);
-            this.showPlaceholders = yield GM.getValue(PLACEHOLDER_KEY, false);
-            this.createContainer();
-            this.createPaginationObserver();
-            this.createFakeChartItem();
-        });
+    async main() {
+        this.addStyles();
+        this.filterState = await GM.getValue(FILTER_STATE_KEY, FilterState.Off);
+        this.showPlaceholders = await GM.getValue(PLACEHOLDER_KEY, false);
+        this.createContainer();
+        this.createPaginationObserver();
+        this.createFakeChartItem();
     }
 }
 const instance = new RateYourMusicBoldFilterChart();
-window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () { return yield instance.main(); }));
+window.addEventListener("load", async () => await instance.main());
 
 /******/ })()
 ;
