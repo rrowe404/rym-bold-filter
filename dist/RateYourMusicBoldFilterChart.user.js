@@ -50,7 +50,7 @@ const RADIO_GROUP_NAME = 'rrowe404_bold_filter';
 const FILTER_STATE_KEY = 'rrowe404_filter_state';
 const FAKE_CHART_ITEM_CLASS = 'rrowe404_fake_chart_item';
 const FORCE_DISPLAY_BLOCK_CLASS = 'rrowe404_force_display_block';
-const SHOW_PLACEHOLDER_CHECKBOX_ID = 'rrowe404_show_placeholder';
+const SHOW_PLACEHOLDER_CHECKBOX_ID = "rrowe404_show_placeholder";
 const PLACEHOLDER_KEY = 'rrowe404_placeholder_key';
 const SHOW_PLACEHOLDER_CLASS = "rrowe404_placeholders";
 class RateYourMusicBoldFilterChart {
